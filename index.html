@@ -206,6 +206,94 @@
             font-weight: bold;
         }
 
+        /* ================= TIMELINE 樣式設計 ================= */
+        .section-desc {
+            color: #aaa;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 30px;
+            border-left: 2px solid rgba(255, 126, 103, 0.3); /* 左側垂直軸線 */
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            background: rgba(20, 25, 40, 0.6);
+            border: 1px solid rgba(255, 126, 103, 0.2);
+            padding: 25px;
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(5px);
+            border-color: rgba(255, 126, 103, 0.8);
+        }
+
+        /* 軸線上的節點圖示 */
+        .timeline-dot {
+            position: absolute;
+            left: -43px;
+            top: 25px;
+            width: 30px;
+            height: 30px;
+            background: #090A0F;
+            border: 2px solid #FF7E67;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            box-shadow: 0 0 10px #FF7E67;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: #FFD700;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .timeline-item h3 {
+            margin: 0 0 10px 0;
+            color: #fff;
+            font-size: 1.3rem;
+        }
+
+        .timeline-item p {
+            margin: 0;
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* 當天高亮節點的呼吸燈特效 */
+        .active-live {
+            border-color: #FFD700;
+            background: rgba(40, 30, 20, 0.6);
+        }
+        .pulse-dot {
+            border-color: #FFD700;
+            box-shadow: 0 0 15px #FFD700;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(255, 215, 0, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+        }
+
         /* 頁尾 */
         footer {
             background: #050508;
@@ -224,7 +312,7 @@
         <div class="menu">
             <a href="#hero">TOP</a>
             <a href="#news">NEWS</a>
-            <a href="#testing1">testing1</a>
+            <a href="#timeline">TIMELINES</a>
             <a href="#Testing2">Testing2</a>
         </div>
     </nav>
@@ -259,10 +347,52 @@
         </ul>
     </section>
 
-    <!-- testing1 區塊 -->
-    <section id="testing1">
-        <h2 class="section-title">02 / testing1</h2>
-        <p>演唱會門票與線上轉播票券資訊將於官方公布後更新於此。</p>
+ <!-- TIMELINE 區塊：改造成精緻的時間軸里程碑 -->
+    <section id="timeline">
+        <h2 class="section-title">02 / CONCERT TIMELINE</h2>
+        <p class="section-desc">追蹤 Shiranui Flare 1st Solo Live 的各項重要日程與籌備進度</p>
+
+        <div class="timeline-container">
+            <!-- 里程碑 1 -->
+            <div class="timeline-item">
+                <div class="timeline-dot">🔥</div>
+                <div class="timeline-content">
+                    <span class="timeline-date">TBD (待官方公布)</span>
+                    <h3>Solo Live 官方正式發表</h3>
+                    <p>等待阿火在直播中親自宣佈重大喜訊，網站將同步解鎖完整售票與轉播資訊。</p>
+                </div>
+            </div>
+
+            <!-- 里程碑 2 -->
+            <div class="timeline-item">
+                <div class="timeline-dot">✨</div>
+                <div class="timeline-content">
+                    <span class="timeline-date">Phase 2</span>
+                    <h3>會場門票與線上應援啟售</h3>
+                    <p>開放實體會場票券抽選、一般販售，以及海外精靈友的線上 Streaming 轉播票預購。</p>
+                </div>
+            </div>
+
+            <!-- 里程碑 3 -->
+            <div class="timeline-item">
+                <div class="timeline-dot">🎁</div>
+                <div class="timeline-content">
+                    <span class="timeline-date">Phase 3</span>
+                    <h3>官方紀念周邊與應援花籃企劃</h3>
+                    <p>同步公開演唱會紀念 T-Shirt、螢光棒、壓克力立牌清單，並啟動粉絲自發性應援企劃。</p>
+                </div>
+            </div>
+
+            <!-- 里程碑 4 -->
+            <div class="timeline-item active-live">
+                <div class="timeline-dot pulse-dot">🌟</div>
+                <div class="timeline-content">
+                    <span class="timeline-date">Concert Day</span>
+                    <h3>Shiranui Flare 1st Solo Live 演出</h3>
+                    <p>見證半精靈站上專屬閃耀舞台的那一刻！精靈友們準備好營火與應援燈海！</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Testing2 區塊 -->
