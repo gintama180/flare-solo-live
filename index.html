@@ -49,14 +49,96 @@
         }
 
         /* 主視覺區塊 (Hero Section) */
-        /* Hero 圖片樣式 (Flare's Standee) */
-        .hero-image {
-            max-width: 300px; /* Keeps it from being too wide on mobile */
-            max-height: 40vh; /* Prevents it from pushing the text off-screen */
-            object-fit: contain;
+        /* 雙圖容器：確保雙人能整齊水平排列並適應各種螢幕 */
+        .char-container {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            width: 100%;
+            max-width: 900px; /* 雙圖並排時的整體最大寬度 */
+            height: 50vh;
             margin-bottom: 20px;
-            filter: drop-shadow(0 0 15px rgba(255, 126, 103, 0.4)); /* Adds a slight campfire glow behind her */
             z-index: 2;
+            pointer-events: none; /* 避免擋住文字或點擊事件 */
+        }
+
+        /* 雙圖基礎樣式 (單個立繪尺寸控制) */
+        .hero-char {
+            width: auto;
+            height: 100%;
+            max-height: 48vh;
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(255, 126, 103, 0.45)); /* campfire 溫暖陰影 */
+        }
+
+        /* 左邊圖片：從左邊滑入 (-100px)，接著在原地 Wiggle 搖晃 */
+        .slide-left {
+            animation: 
+                slideInFromLeft 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards, 
+                wiggleLeft 3s ease-in-out infinite 1.2s; /* 1.2秒滑入後接續搖晃 */
+            transform-origin: bottom center; /* 讓它像站在地上微晃 */
+        }
+
+        /* 右邊圖片：從右邊滑入 (100px)，接著在原地 Wiggle 搖晃 */
+        .slide-right {
+            animation: 
+                slideInFromRight 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards, 
+                wiggleRight 3.5s ease-in-out infinite 1.2s; /* 與左邊時間錯開更自然 */
+            transform-origin: bottom center;
+        }
+
+        /* ================= 動畫定義 (Animations) ================= */
+
+        /* 1. 左邊插圖滑入 */
+        @keyframes slideInFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-150px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        /* 2. 右邊插圖滑入 */
+        @keyframes slideInFromRight {
+            0% {
+                opacity: 0;
+                transform: translateX(150px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        /* 3. 左邊 Wiggle 微幅左右歪頭與上下沉浮（極其細緻） */
+        @keyframes wiggleLeft {
+            0%, 100% { transform: rotate(0deg) translateY(0); }
+            25% { transform: rotate(-2deg) translateY(-3px) scaleX(0.98); }
+            50% { transform: rotate(1deg) translateY(2px); }
+            75% { transform: rotate(-1deg) translateY(-2px); }
+        }
+
+        /* 4. 右邊 Wiggle (稍微不同的角度與時機，避免動作完全同步) */
+        @keyframes wiggleRight {
+            0%, 100% { transform: rotate(0deg) translateY(0); }
+            30% { transform: rotate(2deg) translateY(-4px) scaleX(0.98); }
+            60% { transform: rotate(-1.5deg) translateY(1px); }
+            80% { transform: rotate(1deg) translateY(-1px); }
+        }
+        
+        /* 手機 RWD 適應：在窄螢幕上讓圖小一點，避免互相疊在一起 */
+        @media (max-width: 768px) {
+            .char-container {
+                max-width: 95vw;
+                height: 40vh;
+            }
+            .hero-char {
+                max-height: 38vh;
+            }
         }
         
         .hero-content {
@@ -149,8 +231,11 @@
 
     <!-- 首頁主視覺 -->
    <section id="hero" class="hero">
-        <!-- The uploaded image goes here -->
-        <img src="flare.png" alt="Shiranui Flare" class="hero-image">
+        <!-- 雙人/雙插圖區域 -->
+        <div class="char-container">
+            <img src="flare.png" alt="Shiranui Flare Left" class="hero-char slide-left">
+            <img src="flare2.png" alt="Shiranui Flare Right" class="hero-char slide-right">
+        </div>
         
         <div class="hero-content">
             <h1>Flare 1st Concert</h1>
