@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+    <!-- 匯入 vivian8725118/TimeLine 的核心資源與 jQuery -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -293,7 +298,122 @@
             70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(255, 215, 0, 0); }
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
         }
-
+        
+/* ================= vivian8725118 TimeLine CSS 改良版 ================= */
+        .timeline {
+            position: relative;
+            padding: 50px 0;
+        }
+        .timeline::before {
+            content: '';
+            background: #FF7E67; /* 營火橘色軸線 */
+            width: 4px;
+            height: 100%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            width: 100%;
+            margin-bottom: 70px;
+            position: relative;
+        }
+        .timeline-item:nth-child(even) .timeline-content {
+            float: right;
+            padding: 40px 30px 10px 30px;
+        }
+        .timeline-item:nth-child(even) .timeline-content .date {
+            right: auto;
+            left: 0;
+        }
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            border-style: solid;
+            width: 0;
+            height: 0;
+            top: 30px;
+            left: -15px;
+            border-width: 10px 15px 10px 0;
+            border-color: transparent rgba(20, 25, 40, 0.8) transparent transparent;
+        }
+        .timeline-item::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .timeline-content {
+            position: relative;
+            width: 45%;
+            padding: 10px 30px;
+            border-radius: 4px;
+            background: rgba(20, 25, 40, 0.8); /* 深藍色毛玻璃背景 */
+            border: 1px solid #FF7E67;
+            box-shadow: 0 20px 25px -15px rgba(0, 0, 0, 0.3);
+            color: #fff;
+        }
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            border-style: solid;
+            width: 0;
+            height: 0;
+            top: 30px;
+            right: -15px;
+            border-width: 10px 0 10px 15px;
+            border-color: transparent transparent transparent rgba(20, 25, 40, 0.8);
+        }
+        .timeline-img {
+            width: 30px;
+            height: 30px;
+            background: #FFD700;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            margin-top: 25px;
+            margin-left: -15px;
+            box-shadow: 0 0 15px #FFD700; /* 發光節點 */
+        }
+        .timeline-content h2 {
+            font-size: 24px;
+            margin-top: 0;
+            color: #FF7E67;
+        }
+        .timeline-content .date {
+            background: #FF7E67;
+            display: inline-block;
+            color: #FFFFFF;
+            padding: 10px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-weight: bold;
+        }
+        .timeline-img-header {
+            height: 200px;
+            position: relative;
+            margin-bottom: 20px;
+            border-radius: 4px 4px 0 0;
+            margin: -10px -30px 20px -30px;
+        }
+        .timeline-img-header h2 {
+            color: #FFFFFF;
+            position: absolute;
+            bottom: 5px;
+            left: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+        .bnt-more {
+            background: #FF7E67;
+            color: #FFFFFF;
+            padding: 8px 20px;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            border-radius: 2px;
+        }
+        
         /* 頁尾 */
         footer {
             background: #050508;
@@ -347,52 +467,49 @@
         </ul>
     </section>
 
- <!-- TIMELINE 區塊：改造成精緻的時間軸里程碑 -->
-    <section id="timeline">
-        <h2 class="section-title">02 / CONCERT TIMELINE</h2>
-        <p class="section-desc">追蹤 Shiranui Flare 1st Solo Live 的各項重要日程與籌備進度</p>
+ <section id="timeline" style="background: transparent;">
+        <h2 class="section-title" style="text-align: center;">02 / CONCERT TIMELINE</h2>
+        
+        <!-- 這是 vivian8725118/TimeLine 的核心結構 -->
+        <section class="timeline">
+            <div class="container">
+                <!-- 第一個時間點 -->
+                <div class="timeline-item">
+                    <div class="timeline-img"></div>
+                    <div class="timeline-content">
+                        <h2>Solo Live 官方發表</h2>
+                        <div class="date">TBD</div>
+                        <p>等待阿火在直播中親自宣佈重大喜訊，網站將同步解鎖完整售票與轉播資訊。</p>
+                        <a class="bnt-more" href="javascript:void(0)">MORE</a>
+                    </div>
+                </div> 
 
-        <div class="timeline-container">
-            <!-- 里程碑 1 -->
-            <div class="timeline-item">
-                <div class="timeline-dot">🔥</div>
-                <div class="timeline-content">
-                    <span class="timeline-date">TBD (待官方公布)</span>
-                    <h3>Solo Live 官方正式發表</h3>
-                    <p>等待阿火在直播中親自宣佈重大喜訊，網站將同步解鎖完整售票與轉播資訊。</p>
+                <!-- 第二個時間點 -->
+                <div class="timeline-item">
+                    <div class="timeline-img"></div>
+                    <div class="timeline-content js--fadeInLeft">
+                        <h2>會場門票啟售</h2>
+                        <div class="date">Phase 2</div>
+                        <p>開放實體會場票券抽選、一般販售，以及海外精靈友的線上 Streaming 轉播票預購。</p>
+                        <a class="bnt-more" href="javascript:void(0)">MORE</a>
+                    </div>
+                </div>   
+
+                <!-- 第三個時間點 (帶有圖片/影片) -->
+                <div class="timeline-item">
+                    <div class="timeline-img"></div>
+                    <div class="timeline-content js--fadeInRight">
+                        <!-- 可以放演唱會視覺圖 -->
+                        <div class="timeline-img-header" style="background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Placeholder_LC_light.png/800px-Placeholder_LC_light.png') center center no-repeat; background-size: cover;">
+                            <h2>Shiranui Flare 1st Solo Live</h2>
+                        </div>
+                        <div class="date">Concert Day</div>
+                        <p>見證半精靈站上專屬閃耀舞台的那一刻！</p>
+                        <a class="bnt-more" href="javascript:void(0)">MORE</a>
+                    </div>
                 </div>
             </div>
-
-            <!-- 里程碑 2 -->
-            <div class="timeline-item">
-                <div class="timeline-dot">✨</div>
-                <div class="timeline-content">
-                    <span class="timeline-date">Phase 2</span>
-                    <h3>會場門票與線上應援啟售</h3>
-                    <p>開放實體會場票券抽選、一般販售，以及海外精靈友的線上 Streaming 轉播票預購。</p>
-                </div>
-            </div>
-
-            <!-- 里程碑 3 -->
-            <div class="timeline-item">
-                <div class="timeline-dot">🎁</div>
-                <div class="timeline-content">
-                    <span class="timeline-date">Phase 3</span>
-                    <h3>官方紀念周邊與應援花籃企劃</h3>
-                    <p>同步公開演唱會紀念 T-Shirt、螢光棒、壓克力立牌清單，並啟動粉絲自發性應援企劃。</p>
-                </div>
-            </div>
-
-            <!-- 里程碑 4 -->
-            <div class="timeline-item active-live">
-                <div class="timeline-dot pulse-dot">🌟</div>
-                <div class="timeline-content">
-                    <span class="timeline-date">Concert Day</span>
-                    <h3>Shiranui Flare 1st Solo Live 演出</h3>
-                    <p>見證半精靈站上專屬閃耀舞台的那一刻！精靈友們準備好營火與應援燈海！</p>
-                </div>
-            </div>
-        </div>
+        </section>
     </section>
 
     <!-- Testing2 區塊 -->
@@ -406,6 +523,24 @@
         <p>This is an unofficial fan site. Not affiliated with Cover Corp.</p>
         <p>Malaysia & Taiwan Elfriends Project 2026</p>
     </footer>
-
+    
+<!-- 啟動捲動動畫的腳本 -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+        $(function(){
+            window.sr = ScrollReveal();
+            
+            // 判斷是否為手機版，調整動畫方式
+            if ($(window).width() < 768) {
+                // 手機版只做從下往上浮現
+                sr.reveal('.js--fadeInLeft', { origin: 'bottom', distance: '20px', easing: 'ease-in-out', duration: 800 });
+                sr.reveal('.js--fadeInRight', { origin: 'bottom', distance: '20px', easing: 'ease-in-out', duration: 800 });
+            } else {
+                // 電腦版從左右滑入
+                sr.reveal('.js--fadeInLeft', { origin: 'left', distance: '300px', easing: 'ease-in-out', duration: 800 });
+                sr.reveal('.js--fadeInRight', { origin: 'right', distance: '300px', easing: 'ease-in-out', duration: 800 });
+            }
+        });
+    </script>
 </body>
 </html>
